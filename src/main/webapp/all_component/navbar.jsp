@@ -18,7 +18,8 @@
 
 		<div class="col-md-3">
 			<a href="login.jsp" class="btn btn-success"><i
-				class="fa-solid fa-user-plus"></i> Login</a> <a href="register.jsp"
+				class="fa-solid fa-user-plus"></i> Login</a> 
+				<a href="register.jsp"
 				class="btn btn-success text-white"><i
 				class="fa-solid fa-right-to-bracket"></i> Register</a>
 		</div>
@@ -50,9 +51,10 @@
 			</ul>
 			<div class="set">
 				<form role="search">
-					<button class="btn btn-light" type="submit">
-						<i class="fa-solid fa-gear"></i> Settings
-					</button>
+					
+						<a href="setting.jsp"  class="btn btn-light">
+						<i class="fa-solid fa-gear"></i> Settings</a>
+					
 					<button class="btn btn-light" type="submit">
 						<i class="fa-solid fa-phone"></i> Contact Us
 					</button>
