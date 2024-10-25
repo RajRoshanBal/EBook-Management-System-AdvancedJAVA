@@ -1,4 +1,4 @@
-<div class="container-fluid"
+ <div class="container-fluid"
 	style="height: 10px; background-color: #757575"></div>
 
 <div class="container-fluid p-3 bg-light">
@@ -38,24 +38,8 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="#">Home</a></li>
-				<li class="nav-item"><a class="nav-link active" href="#"><i
-						class="fa-solid fa-book-open"></i> Recent Book</a></li>
-				<li class="nav-item"><a class="nav-link active" href="#"><i
-						class="fa-solid fa-book-open"></i> New Book</a></li>
-
-				<li class="nav-item"><a class="nav-link active"
-					aria-disabled="true"><i class="fa-solid fa-book-open"></i> Old
-						Book</a></li>
-			</ul>
-			<div class="set">
-				<form role="search">
-					<button class="btn btn-light" type="submit">
-						<i class="fa-solid fa-gear"></i> Settings
-					</button>
-					<button class="btn btn-light" type="submit">
-						<i class="fa-solid fa-phone"></i> Contact Us
-					</button>
+					aria-current="page" href="home.jsp">Home</a></li>
+				
 				</form>
 			</div>
 		</div>

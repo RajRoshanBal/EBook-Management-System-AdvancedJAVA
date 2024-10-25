@@ -7,6 +7,5 @@
 <title>Insert title here</title>
 </head>
 <body>
-<h1>User:Home</h1>
 </body>
 </html>

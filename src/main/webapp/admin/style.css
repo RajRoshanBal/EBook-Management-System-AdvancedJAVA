@@ -1,0 +1,14 @@
+.bg-custom{
+	background-color:#757575
+}
+
+.navbar .nav-item:hover .nav-link{
+	background-color: white;
+	color: #757575;
+	border-radius: 15px;
+	
+}
+.set{
+	display: flex;
+	justify-content: space-around;
+}

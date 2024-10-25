@@ -28,11 +28,13 @@
 
 </head>
 <body style="background-color: #dce6e4">
+ 
 	<%@include file="all_component/navbar.jsp"%>
+	
 	<div class="container-fluid back-img">
 		<h2 class="text-center text-white">EBook Management System</h2>
 	</div>
-
+   
 	<!-- Start Recent Book -->
 
 	<div class="container">
