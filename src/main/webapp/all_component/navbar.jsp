@@ -50,9 +50,9 @@
 			</ul>
 			<div class="set">
 				<form role="search">
-					<button class="btn btn-light" type="submit">
+					<a href="setting.jsp" class="btn btn-light">
 						<i class="fa-solid fa-gear"></i> Settings
-					</button>
+					</a>
 					<button class="btn btn-light" type="submit">
 						<i class="fa-solid fa-phone"></i> Contact Us
 					</button>
