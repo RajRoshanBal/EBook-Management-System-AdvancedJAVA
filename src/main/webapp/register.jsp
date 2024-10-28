@@ -19,6 +19,16 @@
 						<h4 class="text-center">Registration Page</h4>
 
 						<%
+						String existMsg = (String) session.getAttribute("exist");
+
+						// Check if SuccessMsg is not empty
+						if (existMsg != null) {
+						%>
+						<p class="text-center text-success"><%=existMsg%></p>
+						<%
+						// Remove the SuccessMsg from the session after displaying it
+						session.removeAttribute("existMsg");
+						}
 						// Fetch the SuccessMsg from the session
 						String successMsg = (String) session.getAttribute("successMsg");
 

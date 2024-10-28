@@ -35,42 +35,43 @@ public class RegisterServlet extends HttpServlet {
 			
 			
 			HttpSession session=req.getSession();	
-			
-			
-			if(check!=null)
-			{
-				UserDAOImpl dao=new UserDAOImpl(DBConnect.getConn());
-				boolean f=dao.userRegister(us);
-				
-				if(f)
-				{
-					//System.out.println("User Register Success..");
-					
-					session.setAttribute("successMsg","Registration Successfull..");
-					resp.sendRedirect("register.jsp");
-					
-				}else {
-					//System.out.println("Something Wrong On Server");
-					
-					session.setAttribute("FailedMsg","Something Wrong On Server..");
-					resp.sendRedirect("register.jsp");
-					
-				}
-			}else {
-				//System.out.println("Please Check Agree Terms & Conditions");
-				session.setAttribute("FailedMsg","Please Check Agree Terms & Conditions..");
-				resp.sendRedirect("register.jsp");
-			}
-			
 			UserDAOImpl dao=new UserDAOImpl(DBConnect.getConn());
-			boolean f=dao.userRegister(us);
 			
-			if(f)
-			{
-				System.out.println("User Register Success..");
-			}else {
-				System.out.println("Something Wrong On Server");
-			}
+			//user email or number already exist
+			if (dao.checkUserExists(us.getEmail(), us.getPhno())) {
+		        session.setAttribute("exist","User with this email or phone number already exists.");
+		        resp.sendRedirect("register.jsp");
+		        
+		    }else {
+		    	
+		    	if(check!=null)
+				{
+					
+					boolean f=dao.userRegister(us);
+					
+					if(f)
+					{
+						//System.out.println("User Register Success..");
+						
+						session.setAttribute("successMsg","Registration Successfull..");
+						resp.sendRedirect("register.jsp");
+						
+					}else {
+						//System.out.println("Something Wrong On Server");
+						
+						session.setAttribute("FailedMsg","Something Wrong On Server..");
+						resp.sendRedirect("register.jsp");
+						
+					}
+				}else {
+					//System.out.println("Please Check Agree Terms & Conditions");
+					session.setAttribute("FailedMsg","Please Check Agree Terms & Conditions..");
+					resp.sendRedirect("register.jsp");
+				}
+		    }
+			
+			
+			
 			
 		} catch (Exception e) {
 			e.printStackTrace();

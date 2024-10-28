@@ -69,7 +69,7 @@ a {
 			</div>
 
 			<div class="col-md-4 mt-3">
-				<a href="">
+				<a href="address.jsp">
 					<div class="card p-3 ">
 						<div class="card-body text-center">
 							<div class="text-warning">
@@ -108,5 +108,6 @@ a {
 			</div>
 		</div>
 	</div>
+	<%@include file="all_component/footer.jsp"%>
 </body>
 </html>

@@ -3,6 +3,7 @@ package com.DAO;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 import com.entity.User;
 
@@ -15,9 +16,13 @@ public class UserDAOImpl implements UserDAO {
 		this.conn = conn;
 	}
 
+	
+	//register
 	@Override
 	public boolean userRegister(User us) {
 		boolean f=false;
+		
+		
 		try {
 			String sql="insert into user(name,email,phno,password) values(?,?,?,?)";
 			PreparedStatement ps=conn.prepareStatement(sql);
@@ -33,11 +38,20 @@ public class UserDAOImpl implements UserDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
 		}
 		
 		return f;
 	}
+	
+	
 
+	//login
 	@Override
 	public User login(String email, String password) {
 		User us=null;
@@ -66,9 +80,113 @@ public class UserDAOImpl implements UserDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
 		}
+		
 		
 		return us;
 	}
+	
+	
+
+	//update user
+	@Override
+	public boolean updateUser(User us) {
+		boolean f=false;
+		try {
+			
+			String sql="update user set name=?,email=?,phno=?,password=? where id=?";
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setString(1, us.getName());
+			ps.setString(2, us.getEmail());
+			ps.setString(3, us.getPhno());
+			ps.setString(4, us.getPassword());
+			ps.setInt(5, us.getId());
+			 int i=ps.executeUpdate();
+			 if(i==1) {
+				 f=true;
+			 }
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (Exception e2) {
+				// TODO: handle exception
+			}
+		}
+		
+		
+		return f;
+	}
+
+
+
+	//check user exisance
+	@Override
+	public boolean checkUserExists(String email, String phno) {
+		 boolean exists = false;
+		    try {
+		        String sql = "SELECT * FROM user WHERE email = ? OR phno = ?";
+		        PreparedStatement ps = conn.prepareStatement(sql);
+		        ps.setString(1, email);
+		        ps.setString(2, phno);
+
+		        ResultSet rs = ps.executeQuery();
+		        if (rs.next()) {
+		           
+		            exists = true;
+		        }
+		    } catch (SQLException e) {
+		        e.printStackTrace();
+		    } finally {
+		        try {
+		            conn.close();
+		        } catch (Exception e2) {
+		            e2.printStackTrace();
+		        }
+		    }
+
+		    return exists;
+	}
+
+
+	//add address
+	@Override
+	public boolean addAddress(User us) {
+		boolean f=false;
+		try {
+			String sql="Update user set address=?,landmark=?,city=?,state=?,pincode=? where id=?";
+			PreparedStatement ps=conn.prepareStatement(sql);
+			ps.setString(1,us.getAddress());
+			ps.setString(2,us.getLandmark());
+			ps.setString(3,us.getCity());
+			ps.setString(4,us.getState());
+			ps.setString(5,us.getPincode());
+			ps.setInt(6, us.getId());
+			
+			int i=ps.executeUpdate();
+			if(i==1) {
+				f=true;
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}finally {
+			try {
+				conn.close();
+			} catch (Exception e2) {
+				e2.printStackTrace();
+			}
+		}
+		return f;
+	}
+	
+	
 	
 }

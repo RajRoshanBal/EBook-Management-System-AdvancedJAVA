@@ -46,10 +46,11 @@
 										id="exampleInputPassword1" required="required" name="password">
 								</div>
 
-								<div class="text-center">
-									<button type="submit" class="btn btn-success">Login</button>
-									<br> <a href="register.jsp">Create Account</a>
+								<div class="text-center ">
+									<button type="submit" class="btn btn-success ">Login</button>
+									
 								</div>
+								<div class="d-flex mt-2"><br> <p>New user ? &nbsp;</p><a href="register.jsp" class="text-decoration-none">Create Account</a></div>
 						</form>
 					</div>
 				</div>
