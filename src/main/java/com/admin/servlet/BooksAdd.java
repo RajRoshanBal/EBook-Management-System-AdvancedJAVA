@@ -34,7 +34,7 @@ public class BooksAdd extends HttpServlet {
            Part part = req.getPart("bimg");
            String fileName = part.getSubmittedFileName();
 
-           BooksDtls b = new BooksDtls(bookName, author, price, categories, status, fileName, "admin");
+           BooksDtls b = new BooksDtls(bookName,author,price,categories,status,fileName,"admin");
            BookDAOimpl dao=new BookDAOimpl(DBConnect.getConn());
            boolean f=dao.addBooks(b);
            HttpSession session = req.getSession();
@@ -44,11 +44,11 @@ public class BooksAdd extends HttpServlet {
         	   File file =new File(path);
         	  part.write(path+File.separator + fileName);
         	  
-				session.setAttribute("succMsg","BookAdded Successfull..");
+				session.setAttribute("succMsg1","BookAdded Successfull..");
 				resp.sendRedirect("admin/add_books.jsp");
 				
 			}else {
-				session.setAttribute("failedMsg","Something Wrong On Server..");
+				session.setAttribute("failedMsg1","Something Wrong On Server..");
 				resp.sendRedirect("admin/add_books.jsp");
 				
 			}

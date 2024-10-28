@@ -57,7 +57,7 @@
 						<form action="../editbooks" method="post"
 						
 							enctype="multipart/form-data">
-							<input tupe="hidden" name="id" value="<%=b.getBookId()%>">
+							<input type="hidden" name="id" value="<%=b.getBookID()  %>">
 							<div class="form-group">
 								<label for="exampleInputEmail1">Book Name*</label> <input
 									name="bname" type="text" class="form-control"
