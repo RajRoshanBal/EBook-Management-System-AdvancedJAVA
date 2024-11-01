@@ -38,13 +38,13 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link active"
-					aria-current="page" href="#">Home</a></li>
-				<li class="nav-item"><a class="nav-link active" href="#"><i
+					aria-current="page" href="index.jsp">Home</a></li>
+				<li class="nav-item"><a class="nav-link active" href="all_recent_book.jsp"><i
 						class="fa-solid fa-book-open"></i> Recent Book</a></li>
-				<li class="nav-item"><a class="nav-link active" href="#"><i
+				<li class="nav-item"><a class="nav-link active" href="all_new_book.jsp"><i
 						class="fa-solid fa-book-open"></i> New Book</a></li>
 
-				<li class="nav-item"><a class="nav-link active"
+				<li class="nav-item"><a class="nav-link active" href="all_old_book.jsp"
 					aria-disabled="true"><i class="fa-solid fa-book-open"></i> Old
 						Book</a></li>
 			</ul>

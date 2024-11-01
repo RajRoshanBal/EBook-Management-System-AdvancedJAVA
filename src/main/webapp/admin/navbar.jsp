@@ -1,4 +1,7 @@
- <div class="container-fluid"
+ <%@page import="com.entity.User"%>
+
+<%@include file="allCss.jsp"%>
+<div class="container-fluid"
 	style="height: 10px; background-color: #757575"></div>
 
 <div class="container-fluid p-3 bg-light">
@@ -17,14 +20,61 @@
 		</div>
 
 		<div class="col-md-3">
-			<a href="../login.jsp" class="btn btn-success"><i
-				class="fa-solid fa-user-plus"></i> Login</a> <a href="../register.jsp"
-				class="btn btn-success text-white"><i
-				class="fa-solid fa-right-to-bracket"></i> Register</a>
-		</div>
+		 <%
+    // Check if userObj exists in the session
+    Object userobj = session.getAttribute("userobj");
+    if (userobj != null) {
+%>
+        <!-- Display when user is logged in -->
+        <a href="login.jsp" class="btn btn-success">
+            <i class="fa-solid fa-user-plus"></i> <%= ((User) userobj).getName() %>
+        </a>
+        <a data-bs-toggle="modal" data-bs-target="#exampleModalCenter" class="btn btn-success text-white">
+    <i class="fa-solid fa-right-to-bracket"></i> Logout
+</a>
 
+<%
+    } else {
+%>
+        <!-- Display when user is not logged in -->
+        <a href="../login.jsp" class="btn btn-success">
+            <i class="fa-solid fa-user-plus"></i> Login
+        </a>
+        <a href="../register.jsp" class="btn btn-success text-white">
+            <i class="fa-solid fa-right-to-bracket"></i> Register
+        </a>
+<%
+    }
+%>
+			
+       </div>
 	</div>
 </div>
+<!-- Logout modal -->
+<!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div clas="text-center">
+       <h4>Do u want logout</h4>
+       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="../logout" type="button" class="btn btn-primary text-white">Logout</a>
+       </div>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
+<!-- end logout modal -->
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
 	<div class="container-fluid">

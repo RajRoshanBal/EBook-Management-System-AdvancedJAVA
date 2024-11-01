@@ -19,5 +19,16 @@ public interface BookDAO {
 	public List<BooksDtls> getBookbyOld(String email, String cat);
 
 	public boolean deleteOldbook(String email, String cat, int id);
-
+    
+	 public List<BooksDtls> getNewBook();
+	 
+	 public List<BooksDtls> getRecentBooks();
+	 
+	 public List<BooksDtls> getOldBooks();
+	 
+	 public List<BooksDtls> getAllRecentBook();
+	 
+	 public List<BooksDtls> getAllNewBook();
+	 
+	 public List<BooksDtls> getAllOldBook();
 }

@@ -31,7 +31,21 @@
 						session.removeAttribute("FailedMsg");
 						}
 						%>
+						
+						<%
+						// Fetch the succMsg from the session
+						String succMsg = (String) session.getAttribute("succMsg");
 
+						// Check if succMsg is not empty
+						if (succMsg != null) {
+						%>
+						<h5 class="text-center text-danger"><%=succMsg%></h5>
+						<%
+						// Remove the succMsg from the session after displaying it
+						session.removeAttribute("succMsg");
+						}
+						%>
+						
 						<form action="login" method="post">
 							<div class="mb-3">
 								<label for="exampleInputEmail1" class="form-label">Email

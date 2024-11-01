@@ -30,6 +30,13 @@
 <body style="background-color: #dce6e4">
  
 	<%@include file="all_component/navbar.jsp"%>
+	 <%
+    // Check if userObj exists in the session
+    if (session.getAttribute("userobj") == null) {
+        // Redirect to Login.jsp if userObj is empty (null)
+        response.sendRedirect("../Login.jsp");
+    }
+%> 
 	
 	
 	<div class="container-fluid back-img">
@@ -313,7 +320,47 @@
 
 	</div>
 	<!-- End Old Book -->
+	
+	  <div class="col-md-3">
+	  <a data-bs-toggle="modal" data-bs-target="#exampleModalCenter">
+	  <div class="card">
+	  <div class="card-body text-center">
+	    <i class="fa-solid fa-right-from-bracket fa-3x text-primary"></i><br>
+	  <h4>Logout</h4>
+	  ---------
+	  </div>
+	  
+	  </div>
+	  </a>
+	  </div>
+     
+	 
+	
+	     <!-- Modal -->
+<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+       <div clas="text-center">
+       <h4>Do u want logout</h4>
+       <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        <a href="../logout" type="button" class="btn btn-primary text-white">Logout</a>
+       </div>
+      </div>
+      <div class="modal-footer">
+        
+      </div>
+    </div>
+  </div>
+</div>
 
+<!-- end logout modal -->
 
 	<%@include file="all_component/footer.jsp"%>
 

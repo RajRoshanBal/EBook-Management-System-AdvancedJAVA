@@ -44,9 +44,9 @@
 				<td><%=b.getBookCategory()%></td>
 				<td><%=b.getStatus()%></td>
 				<td><a href="edit_books.jsp?id=<%=b.getBookID()%>"
-					class="btn btn-sm btn-primary">Edit</a> <a
+					class="btn btn-sm btn-primary"><i class="fa-solid fa-pen-to-square"></i>Edit</a> <a
 					href="../delete?id=<%=b.getBookID()%>"
-					class="btn btn-sm btn-danger">Delete</a></td>
+					class="btn btn-sm btn-danger"><i class="fa-solid fa-pen-to-square"></i>Delete</a></td>
 
 			</tr>
 
