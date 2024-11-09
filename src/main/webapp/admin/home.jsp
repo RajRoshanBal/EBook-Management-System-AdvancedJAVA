@@ -6,13 +6,16 @@
 <meta charset="UTF-8">
 <title>Admin: Home</title>
 <%@include file="allCss.jsp"%>
-<style >
-a{
+<style type="text/css">
+a {
 	text-decoration: none;
 	color: black;
 }
 
-
+a:hover {
+	text-decoration: none;
+	color: black;
+}
 </style>
 </head>
 <body>
@@ -55,14 +58,16 @@ a{
 				</a>
 			</div>
 			<div class="col-mid-3">
+				<a href="../logout">
 				<div class="card">
 
-					<a href="../logout"><div class="card-body text-center">
-							<i class="fa-solid fa-right-from-bracket fa-3x text-primary"></i><br>
-							<h4>Add Books</h4>
-							---------
-						</div></a>
+					<div class="card-body text-center">
+						<i class="fa-solid fa-right-from-bracket fa-3x text-primary"></i><br>
+						<h4>Log Out</h4>
+						---------
+					</div>
 				</div>
+				</a>
 			</div>
 		</div>
 	</div>
