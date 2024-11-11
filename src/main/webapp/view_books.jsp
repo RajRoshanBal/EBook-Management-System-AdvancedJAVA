@@ -30,10 +30,10 @@ BooksDtls b=dao.getBookById(bid);
 	    <div class="col-md-6 text-center p-5 border bg-white">
 	    <h2><%=b.getBookName() %></h2>
 	    <%
-	    if("old".equals(b.getBookCategory()))
+	    if("Old".equals(b.getBookCategory()))
 	    {%>
 	        <h5 class="text-primary">Contact To Seller</h5>
-	    	<h5 class="text-primary"><i class="fa-solid fa-envelope"></i>EMail:<%=b.getEmail() %></h5>
+	    	<h5 class="text-primary"><i class="fa-solid fa-envelope"></i> EMail: <%=b.getEmail() %></h5>
 	    	
 	    <%}
 	    %>
@@ -54,7 +54,7 @@ BooksDtls b=dao.getBookById(bid);
 	     
 	    </div>
 	     <%
-	    if("old".equals(b.getBookCategory()))
+	    if("Old".equals(b.getBookCategory()))
 	    {%>
 	        <div class=" text-center p-3">
 	       <a href="index.jsp" class="btn btn-success"><i

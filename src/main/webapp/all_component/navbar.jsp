@@ -10,8 +10,8 @@
 			</h3>
 		</div>
 		<div class="col-md-6">
-			<form class="d-flex" role="search">
-				<input class="form-control me-2" type="search" placeholder="Search"
+			<form class="d-flex" role="search" action="search.jsp" >
+				<input class="form-control me-2" type="search" placeholder="Search" name="ch"
 					aria-label="Search">
 				<button class="btn btn-success" type="submit">
 					<i class="fa-solid fa-magnifying-glass">&nbsp;<span id="txt"
@@ -21,21 +21,20 @@
 		</div>
 		<%
 		// Check if userObj is not empty
-		User us1=(User) session.getAttribute("userobj");
-		if (us1!=null) {
+		User us1 = (User) session.getAttribute("userobj");
+		if (us1 != null) {
 		%>
 		<div class="col-md-3">
 			<a href="checkout.jsp"><i class="fas fa-cart-plus fa-2x"></i></a> <a
-				 class="btn btn-success"> 
-				 <%=us1.getName() %>
+				class="btn btn-success"> <%=us1.getName()%>
 			</a> <a href="./logout" class="btn btn-primary text-white"> <i
 				class="fas fa-sign-in-alt"></i> Logout
 			</a>
 		</div>
 		<%
-		} else{
+		} else {
 		%>
-		<div class="col-md-3">
+		<div class="col-md-3 ">
 			<a href="login.jsp" class="btn btn-success"><i
 				class="fa-solid fa-user-plus"></i> Login</a> <a href="register.jsp"
 				class="btn btn-success text-white"><i
@@ -54,7 +53,7 @@
 
 <nav class="navbar navbar-expand-lg navbar-dark bg-custom">
 	<div class="container-fluid">
-		<a class="navbar-brand" href="#"><i class="fa-solid fa-house"></i></a>
+		<a class="navbar-brand" href="index.jsp"><i class="fa-solid fa-house"></i></a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse"
 			data-bs-target="#navbarSupportedContent"
 			aria-controls="navbarSupportedContent" aria-expanded="false"
@@ -81,9 +80,9 @@
 					<a href="setting.jsp" class="btn btn-light"> <i
 						class="fa-solid fa-gear"></i> Settings
 					</a>
-					<button class="btn btn-light" type="submit">
+					<a href="help.jsp" class="btn btn-light" type="submit">
 						<i class="fa-solid fa-phone"></i> Contact Us
-					</button>
+					</a>
 				</form>
 			</div>
 		</div>

@@ -6,26 +6,15 @@
 <meta charset="UTF-8">
 <title>Admin: Home</title>
 <%@include file="allCss.jsp"%>
-<style type="text/css">
-a {
-	text-decoration: none;
-	color: black;
-}
 
-a:hover {
-	text-decoration: none;
-	color: black;
-}
-</style>
 </head>
 <body>
 	<%@include file="navbar.jsp"%>
 
-
 	<div class="container">
 		<div class="row p-5">
 			<div class="col-mid-3">
-				<a href="add_books.jsp">
+				<a href="add_books.jsp" style="text-decoration: none;">
 					<div class="card">
 						<div class="card-body text-center">
 							<i class="fas fa-plus-square fa-3x text-primary"></i><br>
@@ -36,7 +25,7 @@ a:hover {
 				</a>
 			</div>
 			<div class="col-mid-3">
-				<a href="all_books.jsp">
+				<a href="all_books.jsp" style="text-decoration: none;">
 					<div class="card">
 						<div class="card-body text-center">
 							<i class="fa-solid fa-book-open fa-3x text-danger"></i><br>
@@ -47,7 +36,7 @@ a:hover {
 				</a>
 			</div>
 			<div class="col-mid-3">
-				<a href="order.jsp">
+				<a href="order.jsp" style="text-decoration: none;">
 					<div class="card">
 						<div class="card-body text-center">
 							<i class="fa-solid fa-box-open fa-3x text-warning"></i><br>
@@ -58,20 +47,18 @@ a:hover {
 				</a>
 			</div>
 			<div class="col-mid-3">
-				<a href="../logout">
-				<div class="card">
-
-					<div class="card-body text-center">
-						<i class="fa-solid fa-right-from-bracket fa-3x text-primary"></i><br>
-						<h4>Log Out</h4>
-						---------
+				<a href="../logout" style="text-decoration: none;">
+					<div class="card">
+						<div class="card-body text-center">
+							<i class="fa-solid fa-right-from-bracket fa-3x text-primary"></i><br>
+							<h4>Log Out</h4>
+							---------
+						</div>
 					</div>
-				</div>
 				</a>
 			</div>
 		</div>
 	</div>
-
 
 </body>
 </html>

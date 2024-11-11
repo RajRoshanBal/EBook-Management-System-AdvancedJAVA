@@ -1,7 +1,6 @@
 package com.user.servlet;
 
 import java.io.IOException;
-
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -16,50 +15,31 @@ import com.entity.User;
 @WebServlet("/Remove_book")
 public class RemoveBookCart extends HttpServlet {
 
-    @Override
-    protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-        // Retrieve the user object from session
-        HttpSession session = req.getSession();
-        User user = (User) session.getAttribute("userobj");
-        
-        if (user == null) {
-            // Redirect to login if user is not logged in
-            resp.sendRedirect("login.jsp");
-            return;
-        }
+		try {
+			
+			int cid = Integer.parseInt(req.getParameter("cid"));
+			int uid = Integer.parseInt(req.getParameter("uid"));
+			CartDaoimpl dao = new CartDaoimpl(DBConnect.getConn());
+			
+			boolean isDeleted = dao.deleteBook(cid, uid);
+			HttpSession session = req.getSession();
 
-        // Retrieve the book ID from the request parameter
-        String bidStr = req.getParameter("bid");
-        String uidstr=req.getParameter("uid");
+			if (isDeleted) {
+				session.setAttribute("sucMsg", "Book removed from cart.");
+				resp.sendRedirect("checkout.jsp");
 
-        // Check for invalid or missing bid parameter
-        if (bidStr == null || bidStr.isEmpty()) {
-            session.setAttribute("failedMsg", "Invalid book ID.");
-            resp.sendRedirect("checkout.jsp");
-            return;
-        }
+			} else {
+				session.setAttribute("failedMsg", "Something went wrong on the server.");
+				resp.sendRedirect("checkout.jsp");
 
-        try {
-            // Parse the book ID to integer
-            int bid = Integer.parseInt(bidStr);
-            int uid = Integer.parseInt(uidstr) ;
+			}
 
-            CartDaoimpl dao = new CartDaoimpl(DBConnect.getConn());
-            boolean f = dao.deleteBook(bid, uid);
-            
-            // Set success or failure message in session
-            if (f) {
-                session.setAttribute("sucMsg", "Book removed from cart.");
-            } else {
-                session.setAttribute("failedMsg", "Something went wrong on the server.");
-            }
-            resp.sendRedirect("checkout.jsp");
+		} catch (Exception e) {
+			e.printStackTrace();
 
-        } catch (NumberFormatException e) {
-            // Handle invalid number format for the book ID
-            session.setAttribute("failedMsg", "Invalid book ID.");
-            resp.sendRedirect("checkout.jsp");
-        }
-    }
+		}
+	}
 }

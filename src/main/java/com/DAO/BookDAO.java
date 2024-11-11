@@ -31,4 +31,6 @@ public interface BookDAO {
 	 public List<BooksDtls> getAllNewBook();
 	 
 	 public List<BooksDtls> getAllOldBook();
+	 
+	 public List<BooksDtls>  getsBookbySearch(String ch);
 }

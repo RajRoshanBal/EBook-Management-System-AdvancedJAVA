@@ -8,6 +8,8 @@ public class Cart {
 	private String author;
 	private Double price;
 	private Double totalPrice;
+	
+	
 	public int getCid() {
 		return cid;
 	}

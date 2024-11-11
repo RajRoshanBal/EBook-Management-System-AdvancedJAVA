@@ -38,14 +38,7 @@ public class UserDAOImpl implements UserDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			try {
-				conn.close();
-			} catch (Exception e2) {
-				// TODO: handle exception
-			}
 		}
-		
 		return f;
 	}
 	
@@ -80,12 +73,6 @@ public class UserDAOImpl implements UserDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			try {
-				conn.close();
-			} catch (Exception e2) {
-				// TODO: handle exception
-			}
 		}
 		
 		
@@ -114,12 +101,6 @@ public class UserDAOImpl implements UserDAO {
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
-		}finally {
-			try {
-				conn.close();
-			} catch (Exception e2) {
-				// TODO: handle exception
-			}
 		}
 		
 		
@@ -145,13 +126,7 @@ public class UserDAOImpl implements UserDAO {
 		        }
 		    } catch (SQLException e) {
 		        e.printStackTrace();
-		    } finally {
-		        try {
-		            conn.close();
-		        } catch (Exception e2) {
-		            e2.printStackTrace();
-		        }
-		    }
+		    } 
 
 		    return exists;
 	}
@@ -177,12 +152,6 @@ public class UserDAOImpl implements UserDAO {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
-		}finally {
-			try {
-				conn.close();
-			} catch (Exception e2) {
-				e2.printStackTrace();
-			}
 		}
 		return f;
 	}

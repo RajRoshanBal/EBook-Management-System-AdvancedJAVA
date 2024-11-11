@@ -3,7 +3,8 @@
 <%@page import="java.util.List"%>
 <%@page import="com.DB.DBConnect"%>
 <%@page import="com.DAO.BookDAOimpl"%>
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,152 +12,202 @@
 <title>Ebook : Index</title>
 <%@include file="all_component/allCss.jsp"%>
 <style type="text/css">
-    .back-img {
-        background: url("image/boook.jpg");
-        height: 50vh;
-        width: 100%;
-        background-size: cover;
-        background-repeat: no-repeat;
-    }
+.back-img {
+	background: url("image/boook.jpg");
+	height: 50vh;
+	width: 100%;
+	background-size: cover;
+	background-repeat: no-repeat;
+}
 
-    .crd-ho:hover {
-        background-color: #cffcf3;
-    }
+.crd-ho:hover {
+	background-color: #cffcf3;
+}
 
-    .add {
-        display: flex;
-        flex-direction: row;
-        justify-content: space-around;
-    }
+.add {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+}
 </style>
 
 </head>
 <body style="background-color: #dce6e4">
-    <% User u = (User) session.getAttribute("userobj"); %>
+	<%
+	User u = (User) session.getAttribute("userobj");
+	%>
 
-    <%@ include file="all_component/navbar.jsp" %>
-    
-    <div class="container-fluid back-img">
-        <h2 class="text-center text-white">EBook Management System</h2>
-    </div>
+	<%@ include file="all_component/navbar.jsp"%>
 
-    <!-- Start Recent Book -->
+	<div class="container-fluid back-img">
+		<h2 class="text-center text-white">EBook Management System</h2>
+	</div>
 
-    <div class="container">
-        <h3 class="text-center">Recent Books</h3>
-        <div class="row">
-        <%
-        BookDAOimpl dao2 = new BookDAOimpl(DBConnect.getConn());
-        List<BooksDtls> list2 = dao2.getRecentBooks();
-        for (BooksDtls b : list2) {
-        %>
-            <div class="col-md-3">
-                <div class="card crd-ho">
-                    <div class="card-body text-center">
-                        <img alt="" src="book/<%= b.getPhotoName() %>" style="width: 150px; height: 200px" class="img-thumbnail">
-                        <p><%= b.getBookName() %></p>
-                        <p><%= b.getAuthor() %></p>
-                        <p>Categories: <%= b.getBookCategory() %></p>
-                        <div class="add">
-                        <%
-                        if (u == null) {
-                        %>
-                            <a href="login.jsp" class="btn btn-danger btn-sm"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</a>            
-                        <% } else { %>
-                            <a href="cart?bid=<%= b.getBookID() %>&uid=<%= u.getId() %>" class="btn btn-danger btn-sm"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</a>
-                        <% } %>
-                            <a href="view_books.jsp?bid=<%= b.getBookID() %>" class="btn btn-success btn-sm">View Details...</a>
-                            <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-indian-rupee-sign"></i> <%= b.getPrice() %></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <% } %>
-        </div>
-        <div class="text-center mt-1">
-            <a href="all_recent_book.jsp" class="btn btn-danger btn-sm text-white">View All...</a>
-        </div>
-    </div>
-    <!-- End Recent Book -->
+	<!-- Start Recent Book -->
 
-    <hr>
+	<div class="container-fluid">
+		<h3 class="text-center">Recent Books</h3>
+		<div class="row p-3">
+			<%
+			BookDAOimpl dao2 = new BookDAOimpl(DBConnect.getConn());
+			List<BooksDtls> list2 = dao2.getRecentBooks();
+			for (BooksDtls b : list2) {
+			%>
+			<div class="col-md-3 mt-2">
+				<div class="card crd-ho">
+					<div class="card-body text-center mt-2">
+						<img alt="" src="book/<%=b.getPhotoName()%>"
+							style="width: 150px; height: 200px" class="img-thumbnail">
+						<p><%=b.getBookName()%></p>
+						<p><%=b.getAuthor()%></p>
+						<p>
+							Categories:
+							<%=b.getBookCategory()%></p>
+						<div class="add">
+							<%
+							String ch = b.getBookCategory();
+							if ("New".equals(ch) && u != null) {
+							%>
+							<a href="cart?bid=<%=b.getBookID()%>&uid=<%=u.getId()%>"
+								class="btn btn-danger btn-sm"><i
+								class="fa-solid fa-cart-shopping"></i> Add To Cart</a>
+							<%
+							} else if ("New".equals(ch) && u == null){
+							%>
+							<a href="login.jsp"
+								class="btn btn-danger btn-sm"><i
+								class="fa-solid fa-cart-shopping"></i> Add To Cart</a>
+							<%
+							}
+							%>
+							<a href="view_books.jsp?bid=<%=b.getBookID()%>"
+								class="btn btn-success btn-sm">View Details...</a> <a href="#"
+								class="btn btn-danger btn-sm"><i
+								class="fa-solid fa-indian-rupee-sign"></i> <%=b.getPrice()%></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<%
+			}
+			%>
+		</div>
+		<div class="text-center mt-1">
+			<a href="all_recent_book.jsp"
+				class="btn btn-danger btn-sm text-white">View All...</a>
+		</div>
+	</div>
+	<!-- End Recent Book -->
 
-    <!-- Start New Book -->
+	<hr>
 
-    <div class="container">
-        <h3 class="text-center">New Books</h3>
-        <div class="row">
-        <%
-        BookDAOimpl dao = new BookDAOimpl(DBConnect.getConn());
-        List<BooksDtls> list = dao.getNewBook();
-        if (list != null && !list.isEmpty()) {
-            for (BooksDtls b : list) {
-        %>
-            <div class="col-md-3">
-                <div class="card crd-ho">
-                    <div class="card-body text-center">
-                        <img alt="" src="book/<%= b.getPhotoName() %>" style="width: 150px; height: 200px" class="img-thumbnail">
-                        <p><%= b.getBookName() %></p>
-                        <p><%= b.getAuthor() %></p>
-                        <p>Categories: <%= b.getBookCategory() %></p>
-                        <div class="add">
-                        <% if (u == null) { %>
-                            <a href="login.jsp" class="btn btn-danger btn-sm"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</a>            
-                        <% } else { %>
-                            <a href="cart?bid=<%= b.getBookID() %>&uid=<%= u.getId() %>" class="btn btn-danger btn-sm"><i class="fa-solid fa-cart-shopping"></i> Add To Cart</a>
-                        <% } %>
-                            <a href="view_books.jsp?bid=<%= b.getBookID() %>" class="btn btn-success btn-sm">View Details...</a>
-                            <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-indian-rupee-sign"></i> <%= b.getPrice() %></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <% } } else { %>
-            <p>No new books available at the moment.</p>
-        <% } %>
-        </div>
-        <div class="text-center mt-1">
-            <a href="all_new_book.jsp" class="btn btn-danger btn-sm text-white">View All...</a>
-        </div>
-    </div>
-    <!-- End New Book -->
+	<!-- Start New Book -->
 
-    <hr>
+	<div class="container-fluid">
+		<h3 class="text-center">New Books</h3>
+		<div class="row p-3">
+			<%
+			BookDAOimpl dao = new BookDAOimpl(DBConnect.getConn());
+			List<BooksDtls> list = dao.getNewBook();
+			if (list != null && !list.isEmpty()) {
+				for (BooksDtls b : list) {
+			%>
+			<div class="col-md-3">
+				<div class="card crd-ho">
+					<div class="card-body text-center mt-2">
+						<img alt="" src="book/<%=b.getPhotoName()%>"
+							style="width: 150px; height: 200px" class="img-thumbnail">
+						<p><%=b.getBookName()%></p>
+						<p><%=b.getAuthor()%></p>
+						<p>
+							Categories:
+							<%=b.getBookCategory()%></p>
+						<div class="add">
+							<%
+							String ch = b.getBookCategory();
+							if ("New".equals(ch) && u != null) {
+							%>
+							<a href="cart?bid=<%=b.getBookID()%>&uid=<%=u.getId()%>"
+								class="btn btn-danger btn-sm"><i
+								class="fa-solid fa-cart-shopping"></i> Add To Cart</a>
+							<%
+							} else if ("New".equals(ch) && u == null){
+							%>
+							<a href="login.jsp"
+								class="btn btn-danger btn-sm"><i
+								class="fa-solid fa-cart-shopping"></i> Add To Cart</a>
+							<%
+							}
+							%>
 
-    <!-- Start Old Book -->
+							<a href="view_books.jsp?bid=<%=b.getBookID()%>"
+								class="btn btn-success btn-sm">View Details...</a> <a href="#"
+								class="btn btn-danger btn-sm"><i
+								class="fa-solid fa-indian-rupee-sign"></i> <%=b.getPrice()%></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<%
+			}
+			} else {
+			%>
+			<p>No new books available at the moment.</p>
+			<%
+			}
+			%>
+		</div>
+		<div class="text-center mt-1">
+			<a href="all_new_book.jsp" class="btn btn-danger btn-sm text-white">View
+				All...</a>
+		</div>
+	</div>
+	<!-- End New Book -->
 
-    <div class="container">
-        <h3 class="text-center">Old Books</h3>
-        <div class="row">
-        <%
-        BookDAOimpl dao3 = new BookDAOimpl(DBConnect.getConn());
-        List<BooksDtls> list3 = dao3.getOldBooks();
-        for (BooksDtls b : list3) {
-        %>
-            <div class="col-md-3">
-                <div class="card crd-ho">
-                    <div class="card-body text-center">
-                        <img alt="" src="book/<%= b.getPhotoName() %>" style="width: 150px; height: 200px" class="img-thumbnail">
-                        <p><%= b.getBookName() %></p>
-                        <p><%= b.getAuthor() %></p>
-                        <p>Categories: <%= b.getBookCategory() %></p>
-                        <div class="add">
-                            <a href="view_books.jsp?bid=<%= b.getBookID() %>" class="btn btn-success btn-sm">View Details...</a>
-                            <a href="#" class="btn btn-danger btn-sm"><i class="fa-solid fa-indian-rupee-sign"></i> <%= b.getPrice() %></a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        <% } %>
-        </div>
-        <div class="text-center mt-3">
-            <a href="all_old_book.jsp" class="btn btn-danger btn-sm text-white">View All...</a>
-        </div>
-    </div>
+	<hr>
 
-    <!-- End Old Book -->
+	<!-- Start Old Book -->
 
-    <%@include file="all_component/footer.jsp"%>
+	<div class="container-fluid">
+		<h3 class="text-center">Old Books</h3>
+		<div class="row p-3">
+			<%
+			BookDAOimpl dao3 = new BookDAOimpl(DBConnect.getConn());
+			List<BooksDtls> list3 = dao3.getOldBooks();
+			for (BooksDtls b : list3) {
+			%>
+			<div class="col-md-3">
+				<div class="card crd-ho">
+					<div class="card-body text-center">
+						<img alt="" src="book/<%=b.getPhotoName()%>"
+							style="width: 150px; height: 200px" class="img-thumbnail">
+						<p><%=b.getBookName()%></p>
+						<p><%=b.getAuthor()%></p>
+						<p>
+							Categories:
+							<%=b.getBookCategory()%></p>
+						<div class="add">
+							<a href="view_books.jsp?bid=<%=b.getBookID()%>"
+								class="btn btn-success btn-sm">View Details...</a> <a href="#"
+								class="btn btn-danger btn-sm"><i
+								class="fa-solid fa-indian-rupee-sign"></i> <%=b.getPrice()%></a>
+						</div>
+					</div>
+				</div>
+			</div>
+			<%
+			}
+			%>
+		</div>
+		<div class="text-center mt-3">
+			<a href="all_old_book.jsp" class="btn btn-danger btn-sm text-white">View
+				All...</a>
+		</div>
+	</div>
+
+	<!-- End Old Book -->
+
+	<%@include file="all_component/footer.jsp"%>
 
 </body>
 </html>

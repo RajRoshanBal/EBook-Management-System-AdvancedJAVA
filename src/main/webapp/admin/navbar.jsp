@@ -31,8 +31,8 @@
 			if (use != null) {
 			%>
 			<!-- Display when user is logged in -->
-			<a href="login.jsp" class="btn btn-success"> <i
-				class="fa-solid fa-user-plus"></i> <%=name%>
+			<a href="#" class="btn btn-success"> <i
+				class="fa-solid fa-user"></i> <%=name%>
 			</a> <a data-bs-toggle="modal" data-bs-target="#exampleModalCenter"
 				class="btn btn-success text-white"> <i
 				class="fa-solid fa-right-to-bracket"></i> Logout
